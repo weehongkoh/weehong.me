@@ -1,0 +1,107 @@
+@import "tailwindcss/base";
+
+@layer base {
+  html {
+    @apply font-google-sans scroll-smooth #{!important};
+  }
+
+  .btn,
+  .btn-variant {
+    @apply rounded-md px-4 py-2 text-sm font-semibold shadow-sm hover:focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn {
+    @apply bg-sorrell-brown-600 hover:bg-sorrell-brown-500 focus-visible:outline-sorrell-brown-600 text-white;
+  }
+
+  .btn-variant {
+    @apply bg-mondo-300 hover:bg-mondo-400 focus-visible:outline-mondo-300 text-black;
+  }
+
+  .svg-progress {
+    @apply rotate-90 lg:right-16;
+
+    circle {
+      stroke-dashoffset: 0;
+      stroke-width: 15%;
+      fill: none;
+    }
+
+    .bg {
+      @apply stroke-mondo-200;
+    }
+
+    .progress {
+      @apply stroke-mondo-700;
+      stroke-dasharray: 0, 1;
+    }
+  }
+
+  .prose {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol,
+    p,
+    blockquote,
+    pre,
+    img {
+      @apply m-0;
+    }
+
+    #article-summary {
+      h1 {
+        @apply font-playfair text-sorrell-brown-700;
+      }
+
+      h2 {
+        @apply text-black font-normal mt-8 md:mt-0;
+      }
+    }
+
+    h2 {
+      @apply text-sorrell-brown-600;
+    }
+
+    a {
+      @apply text-clover-600;
+    }
+
+    .toc {
+      @apply py-8 border-y-2 border-sorrell-brown-200;
+      .toc-item {
+        @apply my-0;
+      }
+    }
+
+    pre {
+      @apply relative p-0;
+
+      code {
+        @apply font-jetbrains #{!important};
+      }
+
+      .code-block {
+        @apply m-0 #{!important};
+      }
+
+      p {
+        @apply m-0 #{!important};
+      }
+
+      .code-block {
+        @apply block min-w-full w-fit;
+      }
+    }
+
+    .list-series {
+      a {
+        @apply text-white;
+      }
+    }
+  }
+}

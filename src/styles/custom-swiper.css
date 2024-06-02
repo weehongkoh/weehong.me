@@ -1,0 +1,26 @@
+.swiper {
+  position: relative;
+}
+
+.swiper-slide {
+  position: relative;
+}
+
+.swiper-caption {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.swiper-pagination {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #866448;
+  z-index: 10;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  color: white;
+}
+
+.swiper-pagination::before {
+  content: "Page";
+  display: block;
+}
