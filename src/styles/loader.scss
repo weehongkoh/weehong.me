@@ -1,0 +1,99 @@
+@import "tailwindcss/base";
+
+@layer base {
+  .firstSquare {
+    animation: spinner 1.2s linear infinite,
+      spinner_firstSquare 1.2s linear infinite;
+    @apply fill-sorrell-brown-500;
+  }
+
+  .secondSquare {
+    animation: spinner 1.2s linear infinite,
+      spinner_secondSquare 1.2s linear infinite;
+    animation-delay: 0.15s;
+    @apply fill-sorrell-brown-500;
+  }
+
+  .thirdSquare {
+    animation: spinner 1.2s linear infinite,
+      spinner_thirdSquare 1.2s linear infinite;
+    animation-delay: 0.45s;
+    @apply fill-sorrell-brown-500;
+  }
+
+  .fourthSquare {
+    animation: spinner 1.2s linear infinite,
+      spinner_fourthSquare 1.2s linear infinite;
+    animation-delay: 0.3s;
+    @apply fill-sorrell-brown-500;
+  }
+
+  @keyframes spinner {
+    0%,
+    50% {
+      width: 9px;
+      height: 9px;
+    }
+
+    10% {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  @keyframes spinner_firstSquare {
+    0%,
+    50% {
+      x: 1.5px;
+      y: 1.5px;
+    }
+
+    10% {
+      x: 0.5px;
+      y: 0.5px;
+      @apply fill-sorrell-brown-900;
+    }
+  }
+
+  @keyframes spinner_secondSquare {
+    0%,
+    50% {
+      x: 13.5px;
+      y: 1.5px;
+    }
+
+    10% {
+      x: 12.5px;
+      y: 0.5px;
+      @apply fill-sorrell-brown-900;
+    }
+  }
+
+  @keyframes spinner_thirdSquare {
+    0%,
+    50% {
+      x: 1.5px;
+      y: 13.5px;
+    }
+
+    10% {
+      x: 0.5px;
+      y: 12.5px;
+      @apply fill-sorrell-brown-900;
+    }
+  }
+
+  @keyframes spinner_fourthSquare {
+    0%,
+    50% {
+      x: 13.5px;
+      y: 13.5px;
+    }
+
+    10% {
+      x: 12.5px;
+      y: 12.5px;
+      @apply fill-sorrell-brown-900;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+@import "font.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Pangaia";
+    src: url("/fonts/Pangaia/Pangaia.woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Pangaia";
+    src: url("/fonts/Pangaia/Pangaia-Italic.woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  main {
+    min-height: calc(100vh - 14rem);
+  }
+
+  h1 {
+    @apply text-6xl text-sorrell-brown-700;
+  }
+
+  h2 {
+    @apply text-6xl text-sorrell-brown-600;
+  }
+
+  a:not(nav a) {
+    @apply text-clover-600;
+  }
+}

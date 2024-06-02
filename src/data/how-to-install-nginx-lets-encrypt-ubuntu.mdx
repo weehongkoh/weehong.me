@@ -1,0 +1,207 @@
+---
+title: How to Install Nginx and the Let's Encrypt on Ubuntu 23.10
+summary: This article will guide you through installing Nginx and Let's Encrypt on the Ubuntu 23.10 operating system.
+publishedAt: 2024-05-03
+category: Deployment
+tags: ubuntu, nginx, lets-encrypt, ssl, certificate, security, web-server, web, server, https, tls, encryption, digitalocean, droplet, domain, dns, configuration, file, install, setup, guide, tutorial, how-to, step-by-step, step, by, step, example, example, code, code, snippet, snippet, command, line, terminal, shell, bash, script, script, dry-run, renew, renewing, renew, renewal
+image: /images/articles/how-to-install-nginx-lets-encrypt-ubuntu.png
+coverImage: /images/articles/covers/how-to-install-nginx-lets-encrypt-ubuntu.png
+---
+
+## Getting Started
+
+After the instance spins up, updating the package list from the repositories is recommended.
+
+```bash
+sudo apt-get update -y
+```
+
+## Install Nginx
+
+```bash
+sudo apt-get install nginx -y
+```
+
+Once Nginx has been installed, open the web browser and enter the server's IP address to access the website.
+
+The page **Welcome to nginx!** should be shown.
+
+This also indicates that **Nginx** has been installed successfully.
+
+## Create a New Nginx Configuration File
+
+<alert type="info" title="Attention Needed">
+  <p>This step would assume the user has pointed the DNS to the IP address.</p>
+</alert>
+
+Create a new file named `<domain_name>.conf` in the `/etc/nginx/sites-available` directory.
+
+Copy and paste the code below, and replace the necessary information according to your requirements.
+
+```lua title:"/etc/nginx/sites-available/<domain_name>.conf"
+server {
+	listen 80;
+	server_name <domain_name>;
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+```
+
+Execute the command to validate that the configuration has been configured without errors.
+
+```bash
+nginx -t
+```
+
+The following message will be displayed when the configuration is error-free.
+
+```bash
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+## Enable the Sites
+
+To create a symbolic link to the `/etc/nginx/sites-enabled` directory, use the following command:
+
+```bash
+ln -s /etc/nginx/sites-available/<domain_name>.conf /etc/nginx/sites-enabled/
+```
+
+Remove the **default** configuration file.
+
+```bash
+sudo rm -rf  /etc/nginx/sites-enabled/default
+```
+
+Restart the **Nginx** service.
+
+```bash
+service nginx reload
+```
+
+Return to the browser and replace the server's IP address with the domain name.
+
+> If an error encounter while browsing the page, check that the protocol is set to http instead of https.
+>
+> Most of the modern browsers force redirect from HTTP to HTTPS.
+
+## Install Let's Encrypt
+
+Install the **Certbot** and **Nginx plugin for Certbot**.
+
+```bash
+sudo apt-get install certbot python3-certbot-nginx -y
+```
+
+Before requesting an SSL certificate, use the command below to ensure that the certificate can be issued without any problems.
+
+```bash
+sudo certbot certonly --nginx \
+	--domains <domain_name> \
+	--dry-run \
+	--non-interactive \
+	--agree-tos
+```
+
+The following prompt will be displayed after successfully executing the dry run without any issues.
+
+```bash
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Simulating a certificate request for <domain_name>
+The dry run was successful.
+```
+
+If the dry run has executed successfully, use the following command to obtain and install an SSL certificate for the domain.
+
+```bash
+sudo certbot certonly --nginx \
+	--domains <domain_name> \
+	--non-interactive \
+	--agree-tos
+```
+
+> By adding the `certonly` option, Certbot is prevented from updating the Nginx configuration. This means that the user will need to manually update the configuration after executing the command in order to access the website using the HTTPS protocol.
+
+After executing the command mentioned above, the following prompt will be displayed.
+
+```bash
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Requesting a certificate for <domain_name>
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/<domain_name>/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/<domain_name>/privkey.pem
+This certificate expires on 2024-04-13.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+
+## Update the Nginx Configuration File
+
+Open the Nginx configuration file and add the following information to enable access to the website using the HTTPS protocol.
+
+```lua title:"/etc/nginx/sites-available/<domain_name>.conf" highlight:"12-27"
+server {
+    if ($host = <domain_name>) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name <domain_name>;
+
+    return 404;
+}
+
+server {
+    listen 443 ssl;
+    server_name <domain_name>;
+
+    ssl_certificate     /etc/letsencrypt/live/<domain_name>/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/<domain_name>/privkey.pem;
+
+    include             /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+       root /var/www/html;
+
+	    index index.html index.htm index.nginx-debian.html;
+    }
+}
+```
+
+Once done, validate the configuration.
+
+```bash
+nginx -t
+```
+
+Restart the **Nginx** service.
+
+```bash
+service nginx reload
+```
+
+## Validate the Changes
+
+Go back to the browser and access the website using the **HTTPS** protocol.
+
+The page displaying the content **"Welcome to nginx!"** should be shown without any issues, with the **HTTPS** displayed on the browser address bar.
+
+## References
+
+- [How To Secure Nginx with Let's Encrypt on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Update: Using Free Let’s Encrypt SSL/TLS Certificates with NGINX](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/)
