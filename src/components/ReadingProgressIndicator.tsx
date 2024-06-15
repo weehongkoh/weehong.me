@@ -26,7 +26,7 @@ export default function ReadingProgressIndicator() {
 
   return (
     <button
-      className="block max-content ml-auto sticky bottom-0 right-0"
+      className="block max-content ml-auto sticky bottom-5 right-0 z-20"
       onClick={jumpToTop}
     >
       <svg

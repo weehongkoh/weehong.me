@@ -60,7 +60,7 @@ export default function Post() {
     }) || null;
   return (
     <main>
-      <section id="about" className="px-4 py-8 mx-auto lg:container">
+      <section id="about" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
         <div className="flex flex-col justify-center items-center gap-y-8 md:min-h-[20rem]">
           <h1 className="font-bold text-4xl text-center md:text-6xl">Blog</h1>
           <p className="text-xl text-center max-w-[50rem] md:text-2xl">
@@ -70,7 +70,7 @@ export default function Post() {
         </div>
       </section>
       {posts && (
-        <section id="blog" className="px-4 py-8 mx-auto lg:container">
+        <section id="blog" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
           <Divider>
             <h2 className="font-pangaia font-semibold text-3xl text-center text-mondo-600 md:text-5xl">
               Write Up

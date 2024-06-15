@@ -29,7 +29,7 @@ export default function Nav() {
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:container">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:max-w-[1366px]">
             <div className="flex h-16">
               <div className="flex flex-1 justify-between">
                 <div className="flex flex-shrink-0 items-center">

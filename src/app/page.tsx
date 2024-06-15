@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <main>
-      <section id="about" className="px-4 py-8 mx-auto lg:container">
+      <section id="about" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
         <div className="flex flex-col justify-center items-center gap-y-8 md:min-h-[20rem]">
           <h1 className="font-pangaia font-bold text-4xl text-center md:text-6xl">
             Vernon Wee Hong KOH
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
       </section>
       {posts && (
-        <section id="blog" className="px-4 py-8 mx-auto lg:container">
+        <section id="blog" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
           <Divider>
             <h2 className="font-pangaia font-semibold text-3xl text-center text-mondo-600 md:text-5xl">
               Blog

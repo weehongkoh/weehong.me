@@ -5,21 +5,22 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons/faCalendarAlt";
+import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
-import Loader from "@/components/Loader";
+import Alert from "@/components/Alert";
+import Blockquote from "@/components/Blockquote";
 import Code from "@/components/Code";
+import Loader from "@/components/Loader";
+import ImageSlider from "@/components/ImageSlider";
 import ReadingProgressIndicator from "@/components/ReadingProgressIndicator";
 import Series from "@/components/Series";
 import { getPosts } from "@/utils/post";
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons/faCalendarAlt";
-import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
-import Blockquote from "@/components/Blockquote";
-import rehypeRaw from "rehype-raw";
-import Alert from "@/components/Alert";
 
 const getPageView = async (slug: string) => {
   const property = [
@@ -109,11 +110,12 @@ export default async function Post({
     Image,
     blockquote: Blockquote,
     alert: Alert,
+    imageslider: ImageSlider,
   };
 
   return (
     <Suspense fallback={<Loader message="Populating content ..." />}>
-      <div className="px-4 py-8 mx-auto relative lg:container">
+      <div className="px-4 py-8 mx-auto relative lg:max-w-[768px]">
         <article className="max-w-full flex flex-col gap-y-4 prose prose-lg md:prose-base">
           <div className="flex justify-between">
             <div className="flex items-center font-jetbrains">
@@ -152,9 +154,9 @@ export default async function Post({
           >
             {post.content}
           </ReactMarkdown>
+          <ReadingProgressIndicator />
         </article>
       </div>
-      <ReadingProgressIndicator />
     </Suspense>
   );
 }

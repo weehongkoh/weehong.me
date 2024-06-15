@@ -8,7 +8,7 @@ export default function Blockquote(
 ) {
   const { children } = props;
   return (
-    <blockquote className="relative px-4 py-2 font-playfair bg-clover-100 border-l-4 border-clover-600">
+    <blockquote className="relative px-4 py-2 font-google bg-clover-100 border-l-4 border-clover-600">
       {children}
     </blockquote>
   );

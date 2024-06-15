@@ -72,7 +72,7 @@
     }
 
     .toc {
-      @apply py-8 my-4 border-y-2 border-sorrell-brown-200;
+      @apply py-8 border-y-2 border-sorrell-brown-200;
       .toc-item {
         @apply my-0;
       }
@@ -95,6 +95,12 @@
 
       .code-block {
         @apply block min-w-full w-fit;
+      }
+    }
+
+    .list-series {
+      a {
+        @apply text-white;
       }
     }
   }

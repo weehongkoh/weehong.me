@@ -1,10 +1,12 @@
+import type { AlertContentTypeProp, AlertProp } from "@/types/Alert";
+
+import React from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons/faExclamationCircle";
 import { faCircle } from "@fortawesome/free-solid-svg-icons/faCircle";
 import { faWarning } from "@fortawesome/free-solid-svg-icons/faWarning";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
-import React from "react";
-import { AlertContentTypeProp, AlertProp } from "@/types/Alert";
 
 export default function Alert(props: Readonly<AlertProp>) {
   const { type, title, children } = props;
