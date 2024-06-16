@@ -1,18 +1,7 @@
-import type { PostProp } from "@/types/Post";
-
 import Blog from "@/components/Blog";
-import { getPosts } from "@/utils/post";
 import Divider from "@/components/Divider";
 
 export default function Home() {
-  const posts: PostProp[] | null =
-    getPosts()?.sort((a, b) => {
-      return (
-        new Date(b.metadata.publishedAt).getTime() -
-        new Date(a.metadata.publishedAt).getTime()
-      );
-    }) || null;
-
   return (
     <main>
       <section id="about" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
@@ -35,16 +24,14 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {posts && (
-        <section id="blog" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
-          <Divider>
-            <h2 className="font-pangaia font-semibold text-3xl text-center text-mondo-600 md:text-5xl">
-              Blog
-            </h2>
-          </Divider>
-          <Blog posts={posts.slice(0, 3)} />
-        </section>
-      )}
+      <section id="blog" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
+        <Divider>
+          <h2 className="font-pangaia font-semibold text-3xl text-center text-mondo-600 md:text-5xl">
+            Blog
+          </h2>
+        </Divider>
+        <Blog />
+      </section>
     </main>
   );
 }

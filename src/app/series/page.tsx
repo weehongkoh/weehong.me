@@ -1,19 +1,19 @@
 import type { Metadata } from "next/types";
 
-import Blog from "@/components/Blog";
+import Series from "@/components/Series";
 import Divider from "@/components/Divider";
 
 export const metadata: Metadata = {
-  title: "Blog | Vernon Wee Hong KOH",
+  title: "Series | Vernon Wee Hong KOH",
   description:
-    "Vernon Wee Hong KOH is a software engineer. This is the space where he shares his thoughts, insights, and experiences in the form of articles.",
+    "A series is a collection of posts divided into different parts to make reading easier.",
   keywords: [
     "software",
     "software engineer",
     "developer",
     "engineer",
     "article",
-    "blog",
+    "series",
     "post",
     "weehong",
     "wee hong",
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
   robots: "index, follow",
   metadataBase: new URL("https://weehong.me"),
   openGraph: {
-    title: "Post | Vernon Wee Hong KOH",
+    title: "Series | Vernon Wee Hong KOH",
     description:
-      "Vernon Wee Hong KOH is a software engineer. This is the space where he shares his thoughts, insights, and experiences in the form of articles.",
-    url: `https://weehong.me/blog`,
+      "A series is a collection of posts divided into different parts to make reading easier.",
+    url: `https://weehong.me/series`,
     images: [
       {
         url: "/images/profile.jpg",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Post | Vernon Wee Hong KOH",
+    title: "Series | Vernon Wee Hong KOH",
     description:
-      "Vernon Wee Hong KOH is a software engineer. This is the space where he shares his thoughts, insights, and experiences in the form of articles.",
+      "A series is a collection of posts divided into different parts to make reading easier.",
     images: [
       {
         url: "/images/profile.jpg",
@@ -48,25 +48,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Post() {
+export default async function SeriesPost() {
   return (
     <main>
       <section id="about" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
         <div className="flex flex-col justify-center items-center gap-y-8 md:min-h-[20rem]">
-          <h1 className="font-bold text-4xl text-center md:text-6xl">Blog</h1>
+          <h1 className="font-bold text-4xl text-center md:text-6xl">Series</h1>
           <p className="text-xl text-center max-w-[50rem] md:text-2xl">
-            This is the space where I share my thoughts, insights, and
-            experiences in the form of articles.
+            A series is a collection of posts divided into different parts to
+            make reading easier
           </p>
         </div>
       </section>
-      <section id="blog" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
+      <section id="series" className="px-4 py-8 mx-auto lg:max-w-[1366px]">
         <Divider>
           <h2 className="font-pangaia font-semibold text-3xl text-center text-mondo-600 md:text-5xl">
-            Write Up
+            Tutorial
           </h2>
         </Divider>
-        <Blog />
+        <Series />
       </section>
     </main>
   );

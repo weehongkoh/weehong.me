@@ -31,8 +31,6 @@ export default function ImageSlider({ children }: { children: ReactNode }) {
         })
     : [];
 
-  console.log(captions);
-
   return (
     <Swiper
       pagination={{

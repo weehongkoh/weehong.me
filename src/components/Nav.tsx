@@ -23,6 +23,10 @@ export default function Nav() {
       title: "Blog",
       href: "/blog",
     },
+    {
+      title: "Series",
+      href: "/series",
+    },
   ];
 
   return (

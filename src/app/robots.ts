@@ -1,6 +1,6 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
-export default function robots(): MetadataRoute.Robots {
+export default function robots(): Readonly<MetadataRoute.Robots> {
   return {
     rules: {
       userAgent: "*",
