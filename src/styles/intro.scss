@@ -1,0 +1,20 @@
+#award,
+#reference {
+  a {
+    @apply underline;
+  }
+}
+
+#download-pdf {
+  @apply text-yellow-500 underline;
+}
+
+#reference {
+  a {
+    @apply font-bold text-yellow-500;
+  }
+
+  b {
+    @apply text-yellow-500;
+  }
+}
